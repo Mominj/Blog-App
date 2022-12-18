@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign In</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="/fragments/navigation :: navigation"></div>
+<div class="container">
+    <form action="#"
+          th:action="@{'/create/post'}"
+          th:object="${posts}"
+          method="post">
+        <h2>Write new blog post</h2>
+        <div>
+            <label>
+                <input style="    margin-bottom: 20px; width: 282px;  height: 47px;" type="text" th:field="*{title}" placeholder="Title" required/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <textarea  style="    margin-bottom: 20px; width: 282px;  height: 120px;" th:field="*{body}" placeholder="Write something valuable" required></textarea>
+            </label>
+        </div>
+        <div class="float-left">
+            <button class="green-btn" type="submit">Send</button>
+        </div>
+
+    </form>
+
+</div>
+
+
+
+</body>
+</html>

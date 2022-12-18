@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+<!--<div th:replace="/fragments/header :: myheader"></div>-->
+<div th:class="box" style="
+    width: 100%;
+    text-align: center;
+    padding: 10px 20px;">
+
+    <h1>Register new user</h1>
+
+        <form
+                action="#"
+                th:action="@{/user/create}"
+                th:object="${users}"
+                method="post"
+               style="   width: 100%;
+                         text-align: center;
+                         padding: 10px 20px;">
+            <div style="background-color: red; color: red">
+
+            </div>
+            <label  th:if="${#fields.hasErrors('userName')}" th:class="${#fields.hasErrors('userName')}? error"> </label>
+            <br>
+            <label >Full name:</label>
+            <input type="text" th:field = "*{userName}" style="width: 200px; height: 30px; margin-bottom: 10px" placeholder="User Name" required />
+            <br />
+
+            <label>Password:</label>
+            <input type="password" th:field="*{password}"  style="width: 200px; height: 30px; margin-bottom: 10px" placeholder="Password" required />
+            <br />
+
+            <div style=";
+                   width: 100%;
+                   text-align: center;
+                   /*justify-content: space-between;*/
+                    ">
+<!--                <button type="submit" style="">Sign In</button>-->
+<!--                <a style="padding-bottom:50px; font-size: 20px;" th:href="@{/login}">Sign In</a>-->
+
+                <button type="submit"   style="    margin-left: 175px;padding: 11px;font-size: 20px;">Register</button>
+            </div>
+
+
+        </form>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign In</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="/fragments/navigation :: navigation"></div>
+
+<div >
+
+            <h2>Blogs</h2>
+            <h1 th:text="${posts.title}">Title</h1>
+            <i><div><a th:text="'Author : '+${posts.users.userName}">Author</a></div></i>
+            <i><div th:text="'Created at: ' + ${#dates.format(posts.creationDate, 'dd-MMM-yyyy')}">Created by</div></i>
+            <p th:text="${posts.body} ">Body</p>
+
+
+
+        <div style="width: 300px; height: 100px">
+            <form  th:object="${comments}"
+                   th:action="@{'/create_comment/'+ ${posts.getId()}}"
+                   method="post">
+                <div>
+
+                    <div class="form-group">
+                        <textarea th:field="*{body}" placeholder="Comment Here"
+                                  class="form-control input-lg"/>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Submit"/>
+                </div>
+            </form>
+        </div>
+
+
+</div>
+</body>
+</html>

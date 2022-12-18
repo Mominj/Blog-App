@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign In</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="/fragments/navigation :: navigation"></div>
+<div th:switch="${users}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*" style="width: 100%; margin: 0 auto;padding: 30px 20px">
+        <h2>Users list Both admin and Bloger</h2>
+        <table th:class="styled-table" >
+            <thead>
+            <tr>
+                <th style="width:  120px">Name</th>
+                <th style="width:  120px">Current Status</th>
+                <th style="width:  120px">Status Change</th>
+                <th style="width:  120px">Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td style="width: 120px " th:text="${user.userName}"></td>
+
+                <td style="width: 120px" th:text="${user.enabled == false}? DE-ACTIVE : ACTIVE "></td>
+
+
+                <td style="width:  120px" ><a th:href="@{/edit/{id}(id=${user.id})}"> <p th:text="${user.enabled == false}? ACTIVE : De-ACTIVE "></p> </a></td>
+                <td style="width: 120px " th:text="${user.roles[0].roleName}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

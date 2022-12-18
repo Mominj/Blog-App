@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign In</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="/fragments/navigation :: navigation"></div>
+
+<div th:switch="${posts}">
+    <h2 th:case="null">No blog yet!</h2>
+    <div th:case="*">
+            <h2>Blogs</h2>
+            <div th:each="post : ${posts}">
+                <h1 th:text="${post.title}">Title</h1>
+                <i><div><a th:text="'Author : '+${post.users.userName}">Author</a></div></i>
+                <i><div th:text="'Created at: ' + ${#dates.format(post.creationDate, 'dd-MMM-yyyy')}">Created by</div></i>
+                <p th:text="${#strings.abbreviate(post.body,400)} ">Body</p>
+                <p style="width:  120px" ><a th:href="@{/delete/post/{id}(id=${post.id})}"> Delete Post </a></p>
+                <p style="width:  120px" ><a th:href="@{/view/post/{post_id}(post_id=${post.id})}"> view full blog </a></p>
+
+            </div>
+    </div>
+</div>
+</body>
+</html>
